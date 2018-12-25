@@ -1,5 +1,5 @@
 //Global Variable tweetList declaration
-const tweetList = document.getElementById(`tweet-list`);
+const tweetList = document.getElementById('tweet-list');
 
 //Event Listener
 addEventListener();
@@ -19,8 +19,8 @@ function tweetSave(e){
 
     //create li element and appending it in tweetList
     const li = document.createElement('li');
-    li.textcontent = tweet;
-    tweetList.appentChild(li);
+    li.textContent = tweet;
+    tweetList.appendChild(li);
 
     //Adding remove button in each tweet
     li.appendChild(removeBtn);

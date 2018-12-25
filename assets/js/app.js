@@ -7,6 +7,7 @@ function addEventListener(){
     document.querySelector('form').addEventListener('submit', tweetSave);
 }
 
+//Click Event Listener for Removing tweet.
 tweetList.addEventListener('click', removeTweet );
 
 //Main function
@@ -29,6 +30,7 @@ function tweetSave(e){
     
 }
 
+//Remove Tweet Function
 function removeTweet(Event){
     if (Event.target.classList.contains('remove-tweet'))
         Event.target.parentElement.remove();

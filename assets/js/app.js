@@ -7,6 +7,8 @@ function addEventListener(){
     document.querySelector('form').addEventListener('submit', tweetSave);
 }
 
+tweetList.addEventListener('click', removeTweet );
+
 //Main function
 function tweetSave(e){
     e.preventDefault();
@@ -25,4 +27,9 @@ function tweetSave(e){
     //Adding remove button in each tweet
     li.appendChild(removeBtn);
     
+}
+
+function removeTweet(Event){
+    if (Event.target.classList.contains('remove-tweet'))
+        Event.target.parentElement.remove();
 }

@@ -2,13 +2,20 @@
 const tweetList = document.getElementById('tweet-list');
 
 //Event Listener
-addEventListener();
-function addEventListener(){
+EventListener();
+function EventListener(){
+
+    // Tweet Sbmission
     document.querySelector('form').addEventListener('submit', tweetSave);
+
+    //Click Event Listener for Removing tweet.
+    tweetList.addEventListener('click', removeTweet );
+
+    //document local storage fetching listener
+    document.addEventListener('DOMContentLoaded', localStoragefetch );
 }
 
-//Click Event Listener for Removing tweet.
-tweetList.addEventListener('click', removeTweet );
+
 
 //Main function
 function tweetSave(e){
@@ -23,10 +30,12 @@ function tweetSave(e){
     //create li element and appending it in tweetList
     const li = document.createElement('li');
     li.textContent = tweet;
-    tweetList.appendChild(li);
 
     //Adding remove button in each tweet
     li.appendChild(removeBtn);
+
+    //Add to list
+    tweetList.appendChild(li);
 
     //Saving tweet in local storage
     addTweetLocally(tweet);
@@ -47,7 +56,7 @@ let tweets = getTweetfromlocal();
     
     localStorage.setItem('tweets', JSON.stringify(tweets));
     
-    
+
 }
 
 function getTweetfromlocal(){
@@ -58,4 +67,25 @@ function getTweetfromlocal(){
     } else
         tweets= JSON.parse(tweetsLS);
         return tweets;
+}
+
+function localStoragefetch(){
+    let tweets = getTweetfromlocal();
+
+    tweets.forEach(function(tweet){
+    //Creating remove button
+    const removeBtn = document.createElement('a');
+    removeBtn.classList = 'remove-tweet';
+    removeBtn.textContent = 'X';
+
+    //create li element and appending it in tweetList
+    const li = document.createElement('li');
+    li.textContent = tweet;
+    
+    //Adding remove button in each tweet
+    li.appendChild(removeBtn);
+
+    //Add to list
+    tweetList.appendChild(li);
+    })
 }

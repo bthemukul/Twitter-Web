@@ -29,7 +29,7 @@ function tweetSave(e){
     li.appendChild(removeBtn);
 
     //Saving tweet in local storage
-    addTweetLocally();
+    addTweetLocally(tweet);
     
 }
 
@@ -40,7 +40,21 @@ function removeTweet(Event){
 }
 
 //Saving tweet in Local Storage via this function decion
-function addTweetLocally(){
+function addTweetLocally(tweet){
+let tweets = getTweetfromlocal();
 
+    tweets.push(tweet);
     
+    localStorage.setItem('tweets', JSON.stringify(tweets));
+    
+}
+
+function getTweetfromlocal(){
+    let tweets ;
+    const tweetsLS = localStorage.getItem('tweets');
+    if(tweetsLS===null){
+        tweets = [];
+    } else
+        tweets= JSON.parse(tweetsLS);
+        return tweets;
 }

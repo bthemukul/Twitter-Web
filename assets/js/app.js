@@ -44,8 +44,10 @@ function tweetSave(e){
 
 //Remove Tweet Function
 function removeTweet(Event){
-    if (Event.target.classList.contains('remove-tweet'))
+    if (Event.target.classList.contains('remove-tweet')){
         Event.target.parentElement.remove();
+    }
+    removeTweetLocal(Event.target.parentElement.textContent);
 }
 
 //Saving tweet in Local Storage via this function decion
@@ -53,10 +55,7 @@ function addTweetLocally(tweet){
 let tweets = getTweetfromlocal();
 
     tweets.push(tweet);
-    
     localStorage.setItem('tweets', JSON.stringify(tweets));
-    
-
 }
 
 function getTweetfromlocal(){
@@ -88,4 +87,18 @@ function localStoragefetch(){
     //Add to list
     tweetList.appendChild(li);
     })
+}
+
+function removeTweetLocal(tweet){
+
+    let tweets = getTweetfromlocal();
+    const tweetDelete = tweet.substring(0, tweet.length-1 );
+
+    tweets.forEach(function(tweetLS, index){
+        if (tweetDelete === tweetLS)
+            tweets.splice(index,1);
+            })
+
+    //Save the data
+    localStorage.setItem('tweets', JSON.stringify(tweets));
 }

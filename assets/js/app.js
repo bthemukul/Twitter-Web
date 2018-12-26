@@ -27,6 +27,9 @@ function tweetSave(e){
 
     //Adding remove button in each tweet
     li.appendChild(removeBtn);
+
+    //Saving tweet in local storage
+    addTweetLocally();
     
 }
 
@@ -34,4 +37,10 @@ function tweetSave(e){
 function removeTweet(Event){
     if (Event.target.classList.contains('remove-tweet'))
         Event.target.parentElement.remove();
+}
+
+//Saving tweet in Local Storage via this function decion
+function addTweetLocally(){
+
+    
 }
